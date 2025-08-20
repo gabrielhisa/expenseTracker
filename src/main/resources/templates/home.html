@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Expense description</th>
+        </tr>
+        </thead>
+        <body>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.description}"></td>
+
+        </tr>
+        </body>
+    </table>
+</div>
+
+</body>
+</html>
