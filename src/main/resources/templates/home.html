@@ -7,24 +7,73 @@
         body {
             font-family: 'Segoe UI', sans-serif;
         }
+        .modern-table {
+            width: 70%;
+            border-collapse: collapse;
+        }
+        .modern-table th {
+            background: #4a6fa5;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        .modern-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .modern-table tr:hover {
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 <body>
+
+
 <div class="page-container">
-    <table>
+    <table class="modern-table">
         <thead>
         <tr>
             <th>Expense description</th>
         </tr>
         </thead>
-        <body>
+        <tbody>
         <tr th:each="expense : ${expenses}">
-            <td th:text="${expense.description}"></td>
-
+            <td th:text="${expense.expenseDescription}"></td>
         </tr>
-        </body>
+        </tbody>
     </table>
 </div>
+
+<div class="page-container">
+    <table class="modern-table">
+        <thead>
+        <tr>
+            <th>Users</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="appUser : ${appUsers}">
+            <td th:text="${appUser.username}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="page-container">
+    <table class="modern-table">
+        <thead>
+        <tr>
+            <th>Categories</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="category : ${categories}">
+            <td th:text="${category.categoryName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 
 </body>
 </html>

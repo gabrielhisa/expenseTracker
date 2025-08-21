@@ -1,5 +1,7 @@
 package com.studying.expenseTracker.controller;
 
+import com.studying.expenseTracker.model.AppUser;
+import com.studying.expenseTracker.model.Category;
 import com.studying.expenseTracker.model.Expense;
 import com.studying.expenseTracker.service.ServiceManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,13 @@ public class HomeController {
     @GetMapping("/home")
     public String getExpenses(Model model){
         List<Expense> expenses = serviceManager.getAllExpenses();
-        model.addAttribute("expense", expenses);
+        List<AppUser> appUsers = serviceManager.getAllUsers();
+        List<Category> categories = serviceManager.getAllCategories();
+
+        model.addAttribute("expenses", expenses);
+        model.addAttribute("appUsers", appUsers);
+        model.addAttribute("categories", categories);
+
         return "home";
     }
 
