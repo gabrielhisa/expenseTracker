@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/expense-tracker")
@@ -32,6 +33,21 @@ public class HomeController {
         model.addAttribute("categories", categories);
 
         return "home";
+    }
+
+    @GetMapping("/test-relationships")
+    public String relations(Model model){
+        // testing with user and category id 1
+        AppUser appUser = serviceManager.findAppUserId(1L).orElse(null);
+        Optional<Category> category = serviceManager.findCategoryId(1L);
+
+        List<Expense> expenses = serviceManager.findAllByUserAndCateg(appUser, category);
+
+        model.addAttribute("appUser", appUser);
+        model.addAttribute("category", category);
+        model.addAttribute("expenses", expenses);
+
+        return "test-relationship";
     }
 
 }

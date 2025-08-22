@@ -2,6 +2,8 @@ package com.studying.expenseTracker.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class AppUser {
@@ -15,6 +17,13 @@ public class AppUser {
 
     @Column(name = "password")
     private String password;
+
+    // DB Relationships
+    @OneToMany(mappedBy = "user_id")
+    private List<Category> categories;
+
+    @OneToMany(mappedBy = "user_id")
+    private List<Expense> expenses;
 
     public AppUser(){
     }
@@ -41,5 +50,21 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
+    public List<Expense> getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(List<Expense> expenses) {
+        this.expenses = expenses;
     }
 }

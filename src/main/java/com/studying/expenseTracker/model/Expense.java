@@ -21,6 +21,15 @@ public class Expense {
     @Column(name = "date")
     private Date expenseDate;
 
+    // DB Relationships
+    @ManyToOne // Many expenses belong to one user
+    @JoinColumn(name = "user_id")
+    private AppUser appUser;
+
+    @ManyToOne // Many expenses belong to one category
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Expense() {
     }
 
@@ -54,5 +63,21 @@ public class Expense {
 
     public void setExpenseDate(Date expenseDate) {
         this.expenseDate = expenseDate;
+    }
+
+    public AppUser getAppUser() {
+        return appUser;
+    }
+
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

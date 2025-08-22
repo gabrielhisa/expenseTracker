@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServiceManager {
@@ -37,6 +38,18 @@ public class ServiceManager {
 
     public List<Category> getAllCategories(){
         return categoryRepository.findAll();
+    }
+
+    public Optional<AppUser> findAppUserId(Long id){
+        return appUserRepository.findById(id);
+    }
+
+    public Optional<Category> findCategoryId(Long id){
+        return categoryRepository.findById(id);
+    }
+
+    public List<Expense> findAllByUserAndCateg(AppUser appUser, Optional<Category> category){
+        return expenseRepository.findByUserAndCategory(appUser, category);
     }
 
 

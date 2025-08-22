@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relationship Test</title>
+</head>
+<body>
+<h1>Database Relationship Test</h1>
+
+<div th:if="${appUser != null and category != null}">
+    <h2>User: <span th:text="${appUser.username}"></span></h2>
+    <h2>Category: <span th:text="${category.name}"></span></h2>
+
+    <h3>Expenses Found: <span th:text="${expenses.size()}"></span></h3>
+
+    <table border="1">
+        <tr>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="expense : ${expenses}">
+            <td th:text="${expense.description}"></td>
+            <td th:text="${expense.amount}"></td>
+            <td th:text="${expense.date}"></td>
+        </tr>
+    </table>
+</div>
+
+<div th:if="${appUser == null or category == null}">
+    <p style="color: red;">Test data not found! Check if user ID 1 and category ID 1 exist.</p>
+</div>
+</body>
+</html>
